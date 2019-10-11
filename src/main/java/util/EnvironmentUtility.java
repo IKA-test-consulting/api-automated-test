@@ -10,7 +10,7 @@ public class EnvironmentUtility {
 
     private static void loadPropertiesFromFile() {
         try {
-            InputStream in = new FileInputStream("../../simple-mock-tests/src/main/resources/simple.properties");
+            InputStream in = new FileInputStream(System.getProperty("user.dir") + "/src/main/resources/simple.properties");
             properties = new Properties();
             properties.load(in);
             in.close();
