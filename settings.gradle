@@ -1,2 +1,3 @@
 rootProject.name = 'simple-api-automated-test'
+include = 'simpleApiTest'
 

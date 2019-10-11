@@ -2,8 +2,12 @@ plugins {
     id 'java'
 }
 
+group 'example-api-automated-test-frameworks'
+version '0.01'
+
 ext {
-    sourceJavaVersion='1.12'
+    sourceJavaVersion = '1.12'
+    targetJavaVersion = '1.12'
     junitVersion = '5.5.1'
     mockitoVersion = '3.0.0'
     wiremockVersion = '2.24.1'
@@ -13,10 +17,8 @@ ext {
     gsonVersion = '2.8.5'
 }
 
-group 'junit-tests'
-version '0.01'
-
-sourceCompatibility = 1.12
+targetCompatibility = "$targetJavaVersion"
+sourceCompatibility = "$sourceJavaVersion"
 
 test {
     useJUnit()
@@ -28,19 +30,21 @@ repositories {
     jcenter()
 }
 
-dependencies {
-    // junit 5
-    testImplementation "org.junit.jupiter:junit-jupiter-api:$junitVersion"
-    testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:$junitVersion"
-    testCompile "org.junit.vintage:junit-vintage-engine:$junitVersion"
+allprojects {
+    dependencies {
+        // junit 5
+        testImplementation "org.junit.jupiter:junit-jupiter-api:$junitVersion"
+        testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:$junitVersion"
+        testCompile "org.junit.vintage:junit-vintage-engine:$junitVersion"
 
-    //Json handling
-    compile "com.google.code.gson:gson:$gsonVersion"
+        //Json handling
+        compile "com.google.code.gson:gson:$gsonVersion"
 
 
-    // rest-assured
-    testCompile "io.rest-assured:rest-assured:$restassuredVersion"
+        // rest-assured
+        testCompile "io.rest-assured:rest-assured:$restassuredVersion"
 
-    // API mocking - trying different things
-    compile "io.specto:hoverfly-java-junit5:$hoverflyVersion"
+        // API mocking - trying different things
+        compile "io.specto:hoverfly-java-junit5:$hoverflyVersion"
+    }
 }
