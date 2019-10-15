@@ -42,7 +42,7 @@ allprojects {
 
 
         // rest-assured
-        testCompile "io.rest-assured:rest-assured:$restassuredVersion"
+        compile "io.rest-assured:rest-assured:$restassuredVersion"
 
         // API mocking - trying different things
         compile "io.specto:hoverfly-java-junit5:$hoverflyVersion"

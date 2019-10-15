@@ -37,7 +37,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 // @ExtendWith allows the junit runner to keep the hoverfly runner around for the tests to use
 // With Junit 4 this would be replaced with a @Rule
 @ExtendWith(HoverflyExtension.class)
-class InitialSalesApiTest {
+class ExampleApiTest {
     private StubServiceBuilder simulatedService;
     private RequestSpecification request = RestAssured.with().log().uri();
     private String service = EnvironmentUtility.getProperty("simple.service.url");
