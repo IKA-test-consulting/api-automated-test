@@ -1,4 +1,4 @@
-package simple;
+package example;
 
 import io.restassured.RestAssured;
 import io.restassured.path.json.JsonPath;
@@ -25,7 +25,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  * Quick and dirty example of rest-assured tests using static mocks
  * <p>
  * Mocks are used when the service/endpoint is not yet ready as the test can be created against the mocks
- * and then when the service is ready they can be commented out
+ * and then when the service is ready they can be commented out.</br>
+ * This test framework only requires the EnvironmentUtility class
  * <p>
  * <b>Next Steps</b>
  * If mocks are needed regularly then create a mock handler to reduce potential for errors in setup

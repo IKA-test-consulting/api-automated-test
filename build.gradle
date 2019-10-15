@@ -5,32 +5,32 @@ plugins {
 group 'example-api-automated-test-frameworks'
 version '0.01'
 
-ext {
-    sourceJavaVersion = '1.12'
-    targetJavaVersion = '1.12'
-    junitVersion = '5.5.1'
-    mockitoVersion = '3.0.0'
-    wiremockVersion = '2.24.1'
-    mockserverVersion = '5.6.1'
-    restassuredVersion = '4.0.0'
-    hoverflyVersion = '0.12.2'
-    gsonVersion = '2.8.5'
-}
-
-targetCompatibility = "$targetJavaVersion"
-sourceCompatibility = "$sourceJavaVersion"
-
-test {
-    useJUnit()
-    useJUnitPlatform()
-}
-
-repositories {
-    mavenCentral()
-    jcenter()
-}
-
 allprojects {
+    ext {
+        sourceJavaVersion = '1.12'
+        targetJavaVersion = '1.12'
+        junitVersion = '5.5.1'
+        mockitoVersion = '3.0.0'
+        wiremockVersion = '2.24.1'
+        mockserverVersion = '5.6.1'
+        restassuredVersion = '4.0.0'
+        hoverflyVersion = '0.12.2'
+        gsonVersion = '2.8.5'
+    }
+
+    targetCompatibility = "$targetJavaVersion"
+    sourceCompatibility = "$sourceJavaVersion"
+
+    repositories {
+        mavenCentral()
+        jcenter()
+    }
+
+    test {
+        useJUnit()
+        useJUnitPlatform()
+    }
+
     dependencies {
         // junit 5
         testImplementation "org.junit.jupiter:junit-jupiter-api:$junitVersion"
