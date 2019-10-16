@@ -1,49 +1,40 @@
 package example;
 
-import fixture.AuthService;
-import fixture.SalesService;
+import service.AuthService;
+import service.SalesService;
 import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
-import io.specto.hoverfly.junit.core.Hoverfly;
-import io.specto.hoverfly.junit5.HoverflyExtension;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
 
 import java.util.HashMap;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
- * Quick and dirty example of rest-assured tests using static mocks
- * <p>
- * Mocks are used when the service/endpoint is not yet ready as the test can be created against the mocks
- * and then when the service is ready they can be commented out.</br>
- * This test framework only requires the EnvironmentUtility class
- * <p>
- * <b>Next Steps</b>
- * If mocks are needed regularly then create a mock handler to reduce potential for errors in setup
- * Create a wrapper for the rest-assured boilerplate
- * Create a wrapper for the json navigation (just for the For loop)
+ * Refactored version of the example api tests that removes some of the duplicated code as well as
+ * abstracting some of the rest-assured code
+ * </br>
+ * <b>Refactor</b>
+ * * Mocking has been moved into a mock framework that isn't directly accessed in the tests
+ * * The requests have been moved into service specific classes that handle that service's request
+ * </br>
+ * <b>Potential steps</b>
+ * * Move rest-assured JsonPath into a separate class so that the tests are unaware of any non-core java methods
  */
 
-// @ExtendWith allows the junit runner to keep the hoverfly runner around for the tests to use
-// With Junit 4 this would be replaced with a @Rule
-@ExtendWith(HoverflyExtension.class)
 class RefactoredExampleApiTest {
-    private Hoverfly hoverfly;
     private String token;
 
     @BeforeEach
-    void setupSimulatedService(Hoverfly hoverfly) {
-        this.hoverfly = hoverfly;
-        token = new AuthService(hoverfly).getToken();
+    void setupSimulatedService() {
+        token = new AuthService().getToken();
+        assertEquals("fake_token", token);
     }
-
 
     @Test
     void salesNameWillBeIncludedInSale() {
-        Response response = new SalesService(hoverfly).getSales(token, 123);
+        Response response = new SalesService().getSales(token, 123);
         //Verify the response has the correct name for a sale id in a list of sales
         JsonPath json = response.getBody().jsonPath();
         assertEquals(2, json.getList("sales").size(), "List has all sales for client");
@@ -56,7 +47,7 @@ class RefactoredExampleApiTest {
 
     @Test
     void badRequestWillHaveErrorStatus() {
-        Response response = new SalesService(hoverfly).getSales(token);
+        Response response = new SalesService().getSales(token);
         //Verify response has the correct status and message
         JsonPath json = response.getBody().jsonPath();
         assertEquals("Error", json.getString("status"), "Status");
