@@ -1,5 +1,7 @@
 package example;
 
+import mock.ExampleMockFramework;
+import org.junit.jupiter.api.BeforeAll;
 import service.AuthService;
 import service.SalesService;
 import io.restassured.path.json.JsonPath;
@@ -16,7 +18,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  * abstracting some of the rest-assured code
  * </br>
  * <b>Refactor</b>
- * * Mocking has been moved into a mock framework that isn't directly accessed in the tests
+ * * Mocking has been moved into a mock framework that only instantiated for the test
  * * The requests have been moved into service specific classes that handle that service's request
  * </br>
  * <b>Potential steps</b>
@@ -26,8 +28,13 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 class RefactoredExampleApiTest {
     private String token;
 
+    @BeforeAll
+    static void setupMock(){
+        new ExampleMockFramework();
+    }
+
     @BeforeEach
-    void setupSimulatedService() {
+    void setup() {
         token = new AuthService().getToken();
         assertEquals("fake_token", token);
     }
