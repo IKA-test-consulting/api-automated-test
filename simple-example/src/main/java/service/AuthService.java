@@ -2,15 +2,15 @@ package service;
 
 import client.ApiRestClient;
 import io.restassured.response.Response;
-import util.EnvironmentUtility;
+import utility.EnvironmentConstants;
 
 import java.util.Map;
 
 public class AuthService {
     private static final String CLIENT_PASSWORD_HEADER = "x-client-password";
     private static final String CLIENT_ID_HEADER = "x-client-id";
-    private String authEndPoint = EnvironmentUtility.getProperty("simple.service.auth");
-    private String service = EnvironmentUtility.getProperty("simple.service.url");
+    private String authEndPoint = EnvironmentConstants.AUTH_SERVICE;
+    private String service = EnvironmentConstants.HOST;
 
     public String getToken() {
         return new ApiRestClient()

@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta http-equiv="x-ua-compatible" content="IE=edge"/>
+<title>Test results - Class ExampleApiTest</title>
+<link href="../css/base-style.css" rel="stylesheet" type="text/css"/>
+<link href="../css/style.css" rel="stylesheet" type="text/css"/>
+<script src="../js/report.js" type="text/javascript"></script>
+</head>
+<body>
+<div id="content">
+<h1>Class ExampleApiTest</h1>
+<div class="breadcrumbs">
+<a href="../index.html">all</a> &gt; 
+<a href="../packages/default-package.html">default-package</a> &gt; ExampleApiTest</div>
+<div id="summary">
+<table>
+<tr>
+<td>
+<div class="summaryGroup">
+<table>
+<tr>
+<td>
+<div class="infoBox" id="tests">
+<div class="counter">2</div>
+<p>tests</p>
+</div>
+</td>
+<td>
+<div class="infoBox" id="failures">
+<div class="counter">0</div>
+<p>failures</p>
+</div>
+</td>
+<td>
+<div class="infoBox" id="ignored">
+<div class="counter">0</div>
+<p>ignored</p>
+</div>
+</td>
+<td>
+<div class="infoBox" id="duration">
+<div class="counter">0.908s</div>
+<p>duration</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</td>
+<td>
+<div class="infoBox success" id="successRate">
+<div class="percent">100%</div>
+<p>successful</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div id="tabs">
+<ul class="tabLinks">
+<li>
+<a href="#tab0">Tests</a>
+</li>
+<li>
+<a href="#tab1">Standard output</a>
+</li>
+</ul>
+<div id="tab0" class="tab">
+<h2>Tests</h2>
+<table>
+<thead>
+<tr>
+<th>Test</th>
+<th>Duration</th>
+<th>Result</th>
+</tr>
+</thead>
+<tr>
+<td class="success">badRequestWillHaveErrorStatus()</td>
+<td class="success">0.793s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">salesNameWillBeIncludedInSale()</td>
+<td class="success">0.115s</td>
+<td class="success">passed</td>
+</tr>
+</table>
+</div>
+<div id="tab1" class="tab">
+<h2>Standard output</h2>
+<span class="code">
+<pre>15:45:18.239 [Test worker] INFO io.specto.hoverfly.junit.core.TempFileManager - Selecting the following binary based on the current operating system: hoverfly_windows_amd64.exe
+15:45:18.244 [Test worker] INFO io.specto.hoverfly.junit.core.TempFileManager - Storing binary in temporary directory C:\Users\sean\AppData\Local\Temp\hoverfly.962674854192184712\hoverfly_windows_amd64.exe
+15:45:18.876 [Test worker] INFO io.specto.hoverfly.junit.core.Hoverfly - Executing binary at C:\Users\sean\AppData\Local\Temp\hoverfly.962674854192184712\hoverfly_windows_amd64.exe
+15:45:18.885 [Test worker] DEBUG org.zeroturnaround.exec.ProcessExecutor - Executing [C:\Users\sean\AppData\Local\Temp\hoverfly.962674854192184712\hoverfly_windows_amd64.exe, -pp, 50911, -ap, 50912, -logs, json] in C:\Users\sean\AppData\Local\Temp\hoverfly.962674854192184712.
+15:45:20.247 [Test worker] DEBUG org.zeroturnaround.exec.ProcessExecutor - Started Process[pid=145352, exitValue=&quot;not exited&quot;]
+15:45:20.314 [Thread-4] INFO hoverfly - Default proxy port has been overwritten port=50911
+15:45:20.315 [Thread-4] INFO hoverfly - Default admin port has been overwritten port=50912
+15:45:20.315 [Thread-4] INFO hoverfly - Using memory backend 
+15:45:20.315 [Thread-4] INFO hoverfly - Proxy prepared... Destination=. Mode=simulate ProxyPort=50911
+15:45:20.315 [Thread-4] INFO hoverfly - current proxy configuration destination=. mode=simulate port=50911
+15:45:20.315 [Thread-4] INFO hoverfly - serving proxy 
+15:45:20.315 [Thread-4] INFO hoverfly - Admin interface is starting... AdminPort=50912
+15:45:20.844 [Thread-4] INFO hoverfly - Mode has been changed mode=simulate
+15:45:20.850 [Test worker] INFO io.specto.hoverfly.junit.core.ProxyConfigurer - Setting proxy host to localhost
+15:45:20.851 [Test worker] INFO io.specto.hoverfly.junit.core.ProxyConfigurer - Setting proxy proxyPort to 50911
+15:45:20.851 [Test worker] INFO io.specto.hoverfly.junit.core.Hoverfly - Importing simulation data to Hoverfly
+15:45:21.237 [Test worker] INFO io.specto.hoverfly.junit.core.Hoverfly - Importing simulation data to Hoverfly
+15:45:21.237 [Thread-4] INFO hoverfly - Mode has been changed mode=simulate
+15:45:21.304 [Test worker] INFO io.specto.hoverfly.junit.core.Hoverfly - Importing simulation data to Hoverfly
+15:45:21.320 [Thread-4] INFO hoverfly - payloads imported failed=0 successful=1 total=1
+Request URI:	http://fake.123/auth
+15:45:21.979 [Test worker] INFO io.specto.hoverfly.junit.core.Hoverfly - Importing simulation data to Hoverfly
+15:45:21.984 [Thread-4] INFO hoverfly - payloads imported failed=0 successful=2 total=2
+Request URI:	http://fake.123/sales
+15:45:22.033 [Thread-4] INFO hoverfly - Mode has been changed mode=simulate
+15:45:22.033 [Test worker] INFO io.specto.hoverfly.junit.core.Hoverfly - Importing simulation data to Hoverfly
+15:45:22.037 [Test worker] INFO io.specto.hoverfly.junit.core.Hoverfly - Importing simulation data to Hoverfly
+15:45:22.041 [Thread-4] INFO hoverfly - payloads imported failed=0 successful=1 total=1
+Request URI:	http://fake.123/auth
+15:45:22.061 [Test worker] INFO io.specto.hoverfly.junit.core.Hoverfly - Importing simulation data to Hoverfly
+15:45:22.063 [Thread-4] INFO hoverfly - payloads imported failed=0 successful=2 total=2
+Request URI:	http://fake.123/sales?client=123
+15:45:22.145 [Test worker] INFO io.specto.hoverfly.junit.core.Hoverfly - Destroying hoverfly process
+15:45:22.149 [WaitForProcess-Process[pid=145352, exitValue=&quot;not exited&quot;]] DEBUG org.zeroturnaround.exec.WaitForProcess - Process[pid=145352, exitValue=1] stopped with exit code 1
+</pre>
+</span>
+</div>
+</div>
+<div id="footer">
+<p>
+<div>
+<label class="hidden" id="label-for-line-wrapping-toggle" for="line-wrapping-toggle">Wrap lines
+<input id="line-wrapping-toggle" type="checkbox" autocomplete="off"/>
+</label>
+</div>Generated by 
+<a href="http://www.gradle.org">Gradle 5.2.1</a> at 22 Oct 2019, 15:45:24</p>
+</div>
+</div>
+</body>
+</html>

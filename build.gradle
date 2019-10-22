@@ -1,7 +1,3 @@
-plugins {
-    id 'java'
-}
-
 group 'api-automated-test-frameworks'
 version '0.01'
 
@@ -9,8 +5,5 @@ allprojects {
     repositories {
         mavenCentral()
         jcenter()
-    }
-
-    dependencies {
     }
 }

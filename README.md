@@ -15,3 +15,7 @@ These implementations are across various organisations and roles and have been c
 ## Requirements
 A requirements document has been added which all frameworks will need to test against.  This document can be found in 
 the root project directory.
+
+## Projects
+### Simple Example
+This shows an example of a quick and dirty implementation for API testing using Rest-Assured, Hoverfly, and Junit5.
