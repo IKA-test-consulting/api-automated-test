@@ -1,5 +1,3 @@
-package example;
-
 import io.restassured.RestAssured;
 import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
@@ -11,7 +9,6 @@ import io.specto.hoverfly.junit5.HoverflyExtension;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import util.EnvironmentUtility;
 
 import java.util.HashMap;
 
@@ -23,12 +20,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
  * Quick and dirty example of rest-assured tests using static mocks
- * <p>
- * Mocks are used when the service/endpoint is not yet ready as the test can be created against the mocks
- * and then when the service is ready they can be commented out.</br>
- * This test framework only requires the EnvironmentUtility class
- * <p>
  * <b>Next Steps</b>
+ * Abstract out the environment specific values, e.g. 'https://fake.123'
  * If mocks are needed regularly then create a mock handler to reduce potential for errors in setup
  * Create a wrapper for the rest-assured boilerplate
  * Create a wrapper for the json navigation (just for the For loop)
@@ -40,9 +33,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 class ExampleApiTest {
     private StubServiceBuilder simulatedService;
     private RequestSpecification request = RestAssured.with().log().uri();
-    private String service = EnvironmentUtility.getProperty("simple.service.url");
-    private String salesEndpoint = EnvironmentUtility.getProperty("simple.service.sales");
-    private String authEndPoint = EnvironmentUtility.getProperty("simple.service.auth");
+    private String service = "http://fake.123";
+    private String salesEndpoint = "/sales";
     private Hoverfly hoverfly;
     private String token;
 
@@ -54,14 +46,14 @@ class ExampleApiTest {
         simulatedService = HoverflyDsl.service(service);
         hoverfly.simulate(
                 dsl(simulatedService
-                        .get(authEndPoint)
+                        .get("/auth")
                         .willReturn(
                                 success()
                                         .body(jsonWithSingleQuotes("{'token':'fake_token'}")))));
         token = request
                 .header("x-client-id", "fakeId")
                 .header("x-client-password", "fakePassword")
-                .get(service + authEndPoint)
+                .get(service + "/auth")
                 .jsonPath()
                 .getString("token");
     }

@@ -5,12 +5,12 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
 
-public class EnvironmentUtility {
-    private static Properties properties;
+public class PropertiesReader {
+    private Properties properties;
 
-    private static void loadPropertiesFromFile() {
+    public PropertiesReader(String path, String filename) {
         try {
-            InputStream in = new FileInputStream(System.getProperty("user.dir") + "/src/main/resources/simple.properties");
+            InputStream in = new FileInputStream(System.getProperty("user.dir") + path + filename);
             properties = new Properties();
             properties.load(in);
             in.close();
@@ -19,10 +19,7 @@ public class EnvironmentUtility {
         }
     }
 
-    public static String getProperty(String propertyName) {
-        if (properties == null) {
-            loadPropertiesFromFile();
-        }
+    public String getProperty(String propertyName) {
         return properties.getProperty(propertyName);
     }
 }

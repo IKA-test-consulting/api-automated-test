@@ -1,0 +1,22 @@
+plugins {
+    id 'java'
+}
+
+group 'api-automated-test-frameworks'
+version '0.01'
+
+sourceCompatibility = 1.12
+
+ext {
+    junitVersion = '5.5.1'
+}
+test {
+    useJUnitPlatform()
+}
+
+dependencies {
+    // junit 5
+    testImplementation "org.junit.jupiter:junit-jupiter-api:$junitVersion"
+    testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:$junitVersion"
+    testCompile "org.junit.vintage:junit-vintage-engine:$junitVersion"
+}

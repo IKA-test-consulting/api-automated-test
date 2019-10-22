@@ -1,15 +1,12 @@
-package example;
-
-import mock.ExampleMockFramework;
-import org.junit.jupiter.api.BeforeAll;
-import service.AuthService;
-import service.SalesService;
 import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
+import mock.ExampleMockFramework;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
-import java.util.HashMap;
+import service.AuthService;
+import service.SalesResponse;
+import service.SalesService;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -29,7 +26,7 @@ class RefactoredExampleApiTest {
     private String token;
 
     @BeforeAll
-    static void setupMock(){
+    static void setupMock() {
         new ExampleMockFramework();
     }
 
@@ -45,11 +42,7 @@ class RefactoredExampleApiTest {
         //Verify the response has the correct name for a sale id in a list of sales
         JsonPath json = response.getBody().jsonPath();
         assertEquals(2, json.getList("sales").size(), "List has all sales for client");
-        for (Object record : json.getList("sales")) {
-            if ((int) ((HashMap) record).get("id") == 1) {
-                assertEquals("HCI", ((HashMap) record).get("name"), "Sale name");
-            }
-        }
+        assertEquals("HCI", new SalesResponse(response).getFieldForSalesId(1, "name"), "Sale name");
     }
 
     @Test

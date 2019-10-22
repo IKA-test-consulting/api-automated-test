@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="RefactoredExampleApiTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2019-10-22T14:45:24" hostname="PC_IKA" time="0.09">
+  <properties/>
+  <testcase name="badRequestWillHaveErrorStatus()" classname="RefactoredExampleApiTest" time="0.05"/>
+  <testcase name="salesNameWillBeIncludedInSale()" classname="RefactoredExampleApiTest" time="0.039"/>
+  <system-out><![CDATA[15:45:22.164 [Test worker] INFO io.specto.hoverfly.junit.core.TempFileManager - Selecting the following binary based on the current operating system: hoverfly_windows_amd64.exe
+15:45:22.166 [Test worker] INFO io.specto.hoverfly.junit.core.TempFileManager - Storing binary in temporary directory C:\Users\sean\AppData\Local\Temp\hoverfly.17275655409360456705\hoverfly_windows_amd64.exe
+15:45:22.803 [Test worker] INFO io.specto.hoverfly.junit.core.Hoverfly - Executing binary at C:\Users\sean\AppData\Local\Temp\hoverfly.17275655409360456705\hoverfly_windows_amd64.exe
+15:45:22.804 [Test worker] DEBUG org.zeroturnaround.exec.ProcessExecutor - Executing [C:\Users\sean\AppData\Local\Temp\hoverfly.17275655409360456705\hoverfly_windows_amd64.exe, -pp, 50918, -ap, 50919, -logs, json] in C:\Users\sean\AppData\Local\Temp\hoverfly.17275655409360456705.
+15:45:23.985 [Test worker] DEBUG org.zeroturnaround.exec.ProcessExecutor - Started Process[pid=151884, exitValue="not exited"]
+15:45:24.053 [Thread-6] INFO hoverfly - Default proxy port has been overwritten port=50918
+15:45:24.054 [Thread-6] INFO hoverfly - Default admin port has been overwritten port=50919
+15:45:24.054 [Thread-6] INFO hoverfly - Using memory backend 
+15:45:24.054 [Thread-6] INFO hoverfly - Proxy prepared... Destination=. Mode=simulate ProxyPort=50918
+15:45:24.055 [Thread-6] INFO hoverfly - current proxy configuration destination=. mode=simulate port=50918
+15:45:24.055 [Thread-6] INFO hoverfly - serving proxy 
+15:45:24.055 [Thread-6] INFO hoverfly - Admin interface is starting... AdminPort=50919
+15:45:24.497 [Thread-6] INFO hoverfly - Mode has been changed mode=simulate
+15:45:24.501 [Test worker] INFO io.specto.hoverfly.junit.core.ProxyConfigurer - Setting proxy host to localhost
+15:45:24.501 [Test worker] INFO io.specto.hoverfly.junit.core.ProxyConfigurer - Setting proxy proxyPort to 50918
+15:45:24.519 [Test worker] INFO io.specto.hoverfly.junit.core.Hoverfly - Importing simulation data to Hoverfly
+15:45:24.534 [Thread-6] INFO hoverfly - payloads imported failed=0 successful=5 total=5
+Request URI:	http://fake.123/auth
+Request URI:	http://fake.123/sales
+Request URI:	http://fake.123/auth
+Request URI:	http://fake.123/sales?client=123
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
