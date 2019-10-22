@@ -1,2 +1,4 @@
-rootProject.name = 'simple-api-automated-test'
+rootProject.name = 'api-automated-test'
+include 'simple-example'
+include 'junit-tests'
 
