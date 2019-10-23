@@ -39,6 +39,7 @@ dependencies {
     // rest-assured
     compile "io.rest-assured:rest-assured:$restassuredVersion"
 
-    // API mocking - trying different things
+    // API mocking
+    compile "io.specto:hoverfly-java:$hoverflyVersion"
     compile "io.specto:hoverfly-java-junit5:$hoverflyVersion"
 }

@@ -30,9 +30,11 @@ hs_err_pid*
 *.iml
 out
 gen
+
 ### Gradle template
 .gradle
 /build/
+/*/build/
 
 # Ignore Gradle GUI config
 gradle-app.setting
