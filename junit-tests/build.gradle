@@ -27,6 +27,8 @@ test {
 }
 
 dependencies {
+    compile project(":library")
+
     // junit 5
     testImplementation "org.junit.jupiter:junit-jupiter-api:$junitVersion"
     testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:$junitVersion"
