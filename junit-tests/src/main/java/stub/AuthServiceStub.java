@@ -5,14 +5,15 @@ import io.specto.hoverfly.junit.core.model.RequestFieldMatcher;
 import io.specto.hoverfly.junit.core.model.RequestResponsePair;
 import io.specto.hoverfly.junit.core.model.Response;
 import org.apache.http.HttpStatus;
+import utility.EnvironmentConstants;
 
 import java.util.*;
 
 import static io.specto.hoverfly.junit.dsl.HttpBodyConverter.jsonWithSingleQuotes;
 
 class AuthServiceStub {
-    private static final String HOST = "fake.123";
-    private static final String AUTH_SERVICE = "/auth";
+    private static final String HOST = EnvironmentConstants.HOST;
+    private static final String AUTH_SERVICE = EnvironmentConstants.AUTH_SERVICE;
 
     private static final String HEADER_CLIENT_ID = "x-client-id";
     private static final String HEADER_CLIENT_PASSWORD = "x-client-password";
@@ -48,8 +49,8 @@ class AuthServiceStub {
         request.setHeaders(headers);
         request.setMethod(Collections.singletonList(RequestFieldMatcher.newExactMatcher("GET")));
         request.setPath(Collections.singletonList(RequestFieldMatcher.newExactMatcher(AUTH_SERVICE)));
-        request.setDestination(Collections.singletonList(RequestFieldMatcher.newExactMatcher(HOST)));
-        request.setScheme(Collections.singletonList(RequestFieldMatcher.newExactMatcher("http")));
+        request.setDestination(Collections.singletonList(RequestFieldMatcher.newExactMatcher(HOST.substring(HOST.lastIndexOf("/") + 1))));
+        request.setScheme(Collections.singletonList(RequestFieldMatcher.newExactMatcher(HOST.substring(0, HOST.indexOf(":")))));
         return request;
     }
 
