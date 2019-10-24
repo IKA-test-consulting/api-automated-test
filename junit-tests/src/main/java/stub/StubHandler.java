@@ -1,4 +1,4 @@
-package mock;
+package stub;
 
 import io.specto.hoverfly.junit.core.Hoverfly;
 import io.specto.hoverfly.junit.core.HoverflyMode;
@@ -9,19 +9,19 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
-public class MockService {
-    private AuthMock authMock = new AuthMock();
+public class StubHandler {
+    private AuthServiceStub authServiceStub = new AuthServiceStub();
     private Hoverfly hoverfly = new Hoverfly(HoverflyMode.SIMULATE);
     private Set<RequestResponsePair> requestResponsePairs = new HashSet<>();
 
-    public MockService() {
+    public StubHandler() {
         hoverfly.start();
-        requestResponsePairs.add(authMock.getTokenSuccess());
+        requestResponsePairs.add(authServiceStub.getTokenSuccess());
     }
 
-    public MockService withAuthMock() {
-        requestResponsePairs.add(authMock.getTokenInvalidCredentials());
-        requestResponsePairs.add(authMock.getTokenMissingCredentials());
+    public StubHandler withAuthStub() {
+        requestResponsePairs.add(authServiceStub.getTokenInvalidCredentials());
+        requestResponsePairs.add(authServiceStub.getTokenMissingCredentials());
         return this;
     }
 

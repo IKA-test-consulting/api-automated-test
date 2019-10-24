@@ -1,6 +1,6 @@
 import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
-import mock.ExampleMockFramework;
+import stub.ExampleMockFramework;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
