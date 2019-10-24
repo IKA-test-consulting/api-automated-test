@@ -1,4 +1,4 @@
-package mock;
+package stub;
 
 import io.specto.hoverfly.junit.core.model.Request;
 import io.specto.hoverfly.junit.core.model.RequestFieldMatcher;
@@ -10,7 +10,7 @@ import java.util.*;
 
 import static io.specto.hoverfly.junit.dsl.HttpBodyConverter.jsonWithSingleQuotes;
 
-class AuthMock {
+class AuthServiceStub {
     private static final String HOST = "fake.123";
     private static final String AUTH_SERVICE = "/auth";
 

@@ -1,4 +1,4 @@
-package mock;
+package stub;
 
 import io.specto.hoverfly.junit.core.Hoverfly;
 import io.specto.hoverfly.junit.core.HoverflyMode;
