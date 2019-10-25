@@ -1,4 +1,4 @@
-package stub;
+package stub.service;
 
 import io.specto.hoverfly.junit.core.model.Request;
 import io.specto.hoverfly.junit.core.model.RequestResponsePair;
