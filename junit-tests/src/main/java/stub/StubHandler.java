@@ -4,6 +4,7 @@ import io.specto.hoverfly.junit.core.Hoverfly;
 import io.specto.hoverfly.junit.core.HoverflyMode;
 import io.specto.hoverfly.junit.core.SimulationSource;
 import io.specto.hoverfly.junit.core.model.*;
+import stub.service.AuthServiceStub;
 
 import java.util.ArrayList;
 import java.util.HashSet;
