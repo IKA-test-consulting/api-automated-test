@@ -3,7 +3,7 @@
 1) Requests with valid user credentials will be given a token
 1) Requests with invalid user credentials will be given an appropriate error response
 
-## 2 Clients
+## 2.1 Clients
 1) Creating a client with mandatory data will be given a success response
 1) A client record with insufficient data will be given an appropriate error response
 1) A client record can be updated with additional data

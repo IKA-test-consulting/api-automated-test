@@ -36,4 +36,8 @@ public class AuthService {
                 .headers(Map.of(CLIENT_ID_HEADER, headerValue))
                 .get(service + authEndPoint);
     }
+
+    public Map<String, String> getTokenHeader() {
+        return Map.of("Authorization", "Bearer " + getToken());
+    }
 }

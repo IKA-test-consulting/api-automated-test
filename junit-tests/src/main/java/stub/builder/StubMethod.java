@@ -1,5 +1,5 @@
 package stub.builder;
 
 public enum StubMethod {
-    GET, POST
+    GET, POST, PATCH
 }
