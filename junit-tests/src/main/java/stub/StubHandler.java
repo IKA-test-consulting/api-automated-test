@@ -6,15 +6,16 @@ import io.specto.hoverfly.junit.core.SimulationSource;
 import io.specto.hoverfly.junit.core.model.*;
 import stub.service.AuthServiceStub;
 import stub.service.ClientServiceStub;
+import stub.service.SaleServiceStub;
 
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
 public class StubHandler {
-    private AuthServiceStub authServiceStub = new AuthServiceStub();
-    private Hoverfly hoverfly = new Hoverfly(HoverflyMode.SIMULATE);
-    private Set<RequestResponsePair> requestResponsePairs = new HashSet<>();
+    private static AuthServiceStub authServiceStub = new AuthServiceStub();
+    private static Hoverfly hoverfly = new Hoverfly(HoverflyMode.SIMULATE);
+    private static Set<RequestResponsePair> requestResponsePairs = new HashSet<>();
 
     public StubHandler() {
         hoverfly.start();
@@ -41,6 +42,14 @@ public class StubHandler {
         requestResponsePairs.add(clientServiceStub.createMarketXClientSuccess());
         requestResponsePairs.add(clientServiceStub.createMarketYClientSuccess());
         requestResponsePairs.add(clientServiceStub.updateClientSuccess());
+        return this;
+    }
+
+    public StubHandler withSaleStub() {
+        SaleServiceStub saleServiceStub = new SaleServiceStub();
+        requestResponsePairs.add(saleServiceStub.getPingError());
+        requestResponsePairs.add(saleServiceStub.getPing());
+        requestResponsePairs.add(saleServiceStub.createSaleSuccess());
         return this;
     }
 }

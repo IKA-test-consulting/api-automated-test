@@ -4,6 +4,8 @@ public class Client {
     private String foreName;
     private String middleName = "Fitzgerald";
     private String surName;
+    private String externalClientId;
+    private String clientId;
     private String identificationNumber;
     private String identificationType;
     private String emailAddress = "test@test.123";
@@ -31,6 +33,16 @@ public class Client {
 
     public Client SurName(String surName) {
         this.surName = surName;
+        return this;
+    }
+
+    public Client ExternalClientId(String externalClientId) {
+        this.externalClientId = clientId;
+        return this;
+    }
+
+    public Client ClientId(String clientId) {
+        this.clientId = clientId;
         return this;
     }
 

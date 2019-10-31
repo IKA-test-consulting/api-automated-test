@@ -7,4 +7,5 @@ public class EnvironmentConstants {
     public static final String AUTH_SERVICE = properties.getProperty("AUTH_SERVICE");
     public static final String HOST = properties.getProperty("HOST");
     public static final String CLIENT_SERVICE = properties.getProperty("CLIENT_SERVICE");
+    public static final String SALE_SERVICE = properties.getProperty("SALE_SERVICE");
 }
