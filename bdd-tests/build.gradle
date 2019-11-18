@@ -1,0 +1,42 @@
+plugins {
+    id 'java'
+}
+
+group 'api-automated-test-frameworks'
+version '0.01'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+    jcenter()
+}
+
+ext {
+    junitVersion = '5.5.1'
+    restassuredVersion = '4.0.0'
+    hoverflyVersion = '0.12.2'
+    gsonVersion = '2.8.5'
+    cucumberVersion = '4.8.0'
+}
+
+dependencies {
+    compile project(":library")
+
+    // junit 5
+    testImplementation "org.junit.jupiter:junit-jupiter-api:$junitVersion"
+    testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:$junitVersion"
+    testCompile "org.junit.vintage:junit-vintage-engine:$junitVersion"
+
+    //Json handling
+    compile "com.google.code.gson:gson:$gsonVersion"
+
+    // rest-assured
+    compile "io.rest-assured:rest-assured:$restassuredVersion"
+
+    // cucumber bdd
+    testCompile "io.cucumber:cucumber-core:$cucumberVersion"
+    testCompile "io.cucumber:cucumber-java:$cucumberVersion"
+    testCompile "io.cucumber:cucumber-junit:$cucumberVersion"
+    testCompile "io.cucumber:cucumber-picocontainer:$cucumberVersion" //Used to share information between stepdefs
+}
