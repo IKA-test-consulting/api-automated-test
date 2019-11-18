@@ -2,4 +2,5 @@ rootProject.name = 'api-automated-test'
 include 'simple-example'
 include 'junit-tests'
 include 'library'
+include 'bdd-tests'
 
