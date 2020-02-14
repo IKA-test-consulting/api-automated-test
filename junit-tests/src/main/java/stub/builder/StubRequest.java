@@ -7,11 +7,12 @@ import java.util.*;
 
 import static io.specto.hoverfly.junit.dsl.HttpBodyConverter.jsonWithSingleQuotes;
 
+@SuppressWarnings({"rawtypes", "unused"})
 public class StubRequest {
     private String path;
     private String method;
     private String host;
-    private List<RequestFieldMatcher> bodyMatcher = new ArrayList<>();
+    private final List<RequestFieldMatcher> bodyMatcher = new ArrayList<>();
     private Map<String, List<RequestFieldMatcher>> query = new HashMap<>();
     private Map<String, List<RequestFieldMatcher>> headers = new HashMap<>();
     private Map<String, String> requiresState = new HashMap<>();
@@ -67,7 +68,7 @@ public class StubRequest {
         if (headers != null && !headers.isEmpty()) request.setHeaders(headers);
         if (query != null && !query.isEmpty()) request.setQuery(query);
         if (requiresState != null && !requiresState.isEmpty()) request.setRequiresState(requiresState);
-        if (bodyMatcher != null) request.setBody(bodyMatcher);
+        request.setBody(bodyMatcher);
         return request;
     }
 }

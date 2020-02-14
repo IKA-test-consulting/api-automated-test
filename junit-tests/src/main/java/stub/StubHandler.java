@@ -13,9 +13,9 @@ import java.util.HashSet;
 import java.util.Set;
 
 public class StubHandler {
-    private static AuthServiceStub authServiceStub = new AuthServiceStub();
-    private static Hoverfly hoverfly = new Hoverfly(HoverflyMode.SIMULATE);
-    private static Set<RequestResponsePair> requestResponsePairs = new HashSet<>();
+    private static final AuthServiceStub authServiceStub = new AuthServiceStub();
+    private static final Hoverfly hoverfly = new Hoverfly(HoverflyMode.SIMULATE);
+    private static final Set<RequestResponsePair> requestResponsePairs = new HashSet<>();
 
     public StubHandler() {
         hoverfly.start();

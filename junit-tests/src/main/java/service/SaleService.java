@@ -12,10 +12,10 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class SaleService {
-    private String saleService = EnvironmentConstants.SALE_SERVICE;
-    private String host = EnvironmentConstants.HOST;
-    private RequestSpecification request = RestAssured.with().log().uri().accept("application/json");
-    private Gson gsonBuilder = new GsonBuilder().setPrettyPrinting().create();
+    private final String saleService = EnvironmentConstants.SALE_SERVICE;
+    private final String host = EnvironmentConstants.HOST;
+    private final RequestSpecification request = RestAssured.with().log().uri().accept("application/json");
+    private final Gson gsonBuilder = new GsonBuilder().setPrettyPrinting().create();
 
     /*Get the service status*/
     public Response ping(String token) {

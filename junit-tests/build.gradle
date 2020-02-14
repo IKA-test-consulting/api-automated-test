@@ -3,10 +3,10 @@ plugins {
 }
 
 ext {
-    junitVersion = '5.5.1'
-    restassuredVersion = '4.0.0'
-    hoverflyVersion = '0.12.2'
-    gsonVersion = '2.8.5'
+    junitVersion = '5.5.1' as Object
+    restassuredVersion = '4.0.0' as Object
+    hoverflyVersion = '0.12.2' as Object
+    gsonVersion = '2.8.5' as Object
 }
 
 repositories {

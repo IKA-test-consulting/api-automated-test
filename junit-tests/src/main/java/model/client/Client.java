@@ -1,5 +1,6 @@
 package model.client;
 
+@SuppressWarnings({"FieldCanBeLocal", "unused"})
 public class Client {
     private String foreName;
     private String middleName = "Fitzgerald";

@@ -11,6 +11,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 
 import java.util.HashMap;
+import java.util.List;
 
 import static io.specto.hoverfly.junit.core.SimulationSource.dsl;
 import static io.specto.hoverfly.junit.dsl.HttpBodyConverter.jsonWithSingleQuotes;
@@ -32,9 +33,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 @ExtendWith(HoverflyExtension.class)
 class ExampleApiTest {
     private StubServiceBuilder simulatedService;
-    private RequestSpecification request = RestAssured.with().log().uri();
-    private String service = "http://fake.123";
-    private String salesEndpoint = "/sales";
+    private final RequestSpecification request = RestAssured.with().log().uri();
+    private final String service = "http://fake.123";
+    private final String salesEndpoint = "/sales";
     private Hoverfly hoverfly;
     private String token;
 
@@ -79,9 +80,10 @@ class ExampleApiTest {
         //Verify the response has the correct name for a sale id in a list of sales
         JsonPath json = response.getBody().jsonPath();
         assertEquals(2, json.getList("sales").size(), "List has all sales for client");
-        for (Object record : json.getList("sales")) {
-            if ((int) ((HashMap) record).get("id") == 1) {
-                assertEquals("HCI", ((HashMap) record).get("name"), "Sale name");
+        List<HashMap<String, Object>> jsonList = json.getList("sales");
+        for (HashMap<String, Object> record : jsonList){
+            if ((int) record.get("id") == 1) {
+                assertEquals("HCI", record.get("name"), "Sale name");
             }
         }
     }

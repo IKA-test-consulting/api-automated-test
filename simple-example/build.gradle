@@ -3,14 +3,11 @@ plugins {
 }
 
 ext {
-    restassuredVersion = '4.0.0'
-    junitVersion = '5.5.1'
-    hoverflyVersion = '0.12.2'
-    gsonVersion = '2.8.5'
+    restassuredVersion = '4.0.0' as Object
+    junitVersion = '5.5.1' as Object
+    hoverflyVersion = '0.12.2' as Object
+    gsonVersion = '2.8.5' as Object
 }
-
-targetCompatibility = 1.12
-sourceCompatibility = 1.12
 
 repositories {
     mavenCentral()

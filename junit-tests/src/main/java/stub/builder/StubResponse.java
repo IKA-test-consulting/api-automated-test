@@ -6,6 +6,7 @@ import java.util.*;
 
 import static io.specto.hoverfly.junit.dsl.HttpBodyConverter.jsonWithSingleQuotes;
 
+@SuppressWarnings({"unused"})
 public class StubResponse {
     private Integer status;
     private String body;

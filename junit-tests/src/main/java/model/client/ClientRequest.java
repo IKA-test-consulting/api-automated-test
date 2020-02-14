@@ -1,5 +1,6 @@
 package model.client;
 
+@SuppressWarnings({"FieldCanBeLocal", "unused"})
 public class ClientRequest {
     private String businessId;
     private String externalClientId;

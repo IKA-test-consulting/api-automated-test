@@ -1,5 +1,6 @@
 package model.client;
 
+@SuppressWarnings({"FieldCanBeLocal", "unused"})
 public class Preferences {
     private boolean gpdrAccepted = true;
     private boolean tncAccepted = true;

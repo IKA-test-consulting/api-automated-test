@@ -10,9 +10,9 @@ import java.util.Map;
 public class AuthService {
     private static final String CLIENT_PASSWORD_HEADER = "x-client-password";
     private static final String CLIENT_ID_HEADER = "x-client-id";
-    private String authEndPoint = EnvironmentConstants.AUTH_SERVICE;
-    private String service = EnvironmentConstants.HOST;
-    private RequestSpecification request = RestAssured.with().log().uri().accept("application/json");
+    private final String authEndPoint = EnvironmentConstants.AUTH_SERVICE;
+    private final String service = EnvironmentConstants.HOST;
+    private final RequestSpecification request = RestAssured.with().log().uri().accept("application/json");
 
     /*Get the token using the default login details*/
     public String getToken() {

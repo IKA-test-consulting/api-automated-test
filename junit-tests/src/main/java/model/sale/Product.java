@@ -1,5 +1,6 @@
 package model.sale;
 
+@SuppressWarnings({"FieldCanBeLocal", "unused"})
 public class Product {
     private String name;
     private String description;

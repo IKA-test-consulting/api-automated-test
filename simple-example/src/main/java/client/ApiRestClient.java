@@ -8,7 +8,7 @@ import io.restassured.specification.RequestSpecification;
 import java.util.Map;
 
 public class ApiRestClient {
-    private RequestSpecification request = RestAssured.with().log().uri().accept("application/json");
+    private final RequestSpecification request = RestAssured.with().log().uri().accept("application/json");
 
     public ApiRestClient(String token) {
         request.header("Authorization", "Bearer " + token);

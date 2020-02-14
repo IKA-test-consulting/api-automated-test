@@ -27,6 +27,7 @@ public class AuthServiceStub {
         return new StubResponse().status(statusCode).body(body).build();
     }
 
+    @SuppressWarnings("rawtypes")
     private Request createRequest(String clientId, String clientPassword) {
         Map<String, List<RequestFieldMatcher>> headers = new HashMap<>();
         headers.put(HEADER_CLIENT_ID, Collections.singletonList(RequestFieldMatcher.newExactMatcher(clientId)));

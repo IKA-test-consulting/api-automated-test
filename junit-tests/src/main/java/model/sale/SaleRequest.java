@@ -4,6 +4,7 @@ import model.client.Client;
 
 import java.util.List;
 
+@SuppressWarnings({"unused"})
 public class SaleRequest {
     String businessId;
     Client client;
@@ -36,8 +37,8 @@ public class SaleRequest {
     "client": {
       "foreName": "John",
       "surName": "Doe",
-      "identifactionNumber": "ID-123",
-      "identifactionType": "Passport",
+      "identificationNumber": "ID-123",
+      "identificationType": "Passport",
       "clientExternalId": "E18-123",
       "clientId": "I18-123"
     },

@@ -6,11 +6,12 @@ import utility.EnvironmentConstants;
 
 import java.util.Map;
 
+@SuppressWarnings("unused")
 public class AuthService {
     private static final String CLIENT_PASSWORD_HEADER = "x-client-password";
     private static final String CLIENT_ID_HEADER = "x-client-id";
-    private String authEndPoint = EnvironmentConstants.AUTH_SERVICE;
-    private String service = EnvironmentConstants.HOST;
+    private final String authEndPoint = EnvironmentConstants.AUTH_SERVICE;
+    private final String service = EnvironmentConstants.HOST;
 
     public String getToken() {
         return new ApiRestClient()
