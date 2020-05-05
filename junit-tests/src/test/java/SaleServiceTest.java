@@ -28,7 +28,7 @@ class SaleServiceTest {
     void requestWithNoTokenWillError() {
         System.out.println("5.2) A request with no token will be given an appropriate error response");
 
-        Response response = new SaleService().ping();
+        Response response = new SaleService(urls).ping();
         assertEquals(HttpStatus.SC_FORBIDDEN, response.getStatusCode(), "Http status");
         JsonPath json = response.jsonPath();
         assertEquals("error", json.getString("status"), "Message status");
@@ -40,7 +40,7 @@ class SaleServiceTest {
         System.out.println("5.1) All requests to services must use a token retrieved from the Auth service");
         System.out.println("5.3) All services will provide their 'UP' status");
 
-        Response response = new SaleService().ping(new AuthService().getToken());
+        Response response = new SaleService(urls).ping(new AuthService(urls).getToken());
         assertEquals(HttpStatus.SC_OK, response.getStatusCode(), "Http status");
         JsonPath json = response.jsonPath();
         assertEquals("client", json.getString("service"), "Service");
@@ -59,7 +59,7 @@ class SaleServiceTest {
                 .client(new Client().ClientId("int-1"))
                 .products(Collections.singletonList(new Product().getByName("product 1")));
 
-        Response response = new SaleService().addSale(request);
+        Response response = new SaleService(urls).addSale(request);
         assertEquals(HttpStatus.SC_OK, response.getStatusCode(), "Http status");
         JsonPath json = response.jsonPath();
         assertEquals("success", json.getString("status"), "status");

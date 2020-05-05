@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 import service.AuthService;
 import stub.StubServiceHandler;
 import utility.*;
+import static utility.EnvironmentConstants.urls;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -18,7 +19,7 @@ class AuthServiceTest {
     @Test
     void validCredentialsWillReturnToken() {
         System.out.println("1.1) Requests with valid user credentials will be given a token");
-        Response response = new AuthService().getToken("fakeId", "fakePassword");
+        Response response = new AuthService(urls).getToken("fakeId", "fakePassword");
         assertEquals(HttpStatus.SC_OK, response.getStatusCode(), "Http status");
         assertEquals("fake_token", response.jsonPath().getString("token"), "Token");
     }
@@ -26,7 +27,7 @@ class AuthServiceTest {
     @Test
     void missingCredentialsWillReturnError() {
         System.out.println("1.2) Requests with invalid user credentials will be given an appropriate error response");
-        Response response = new AuthService().getToken("missingHeader");
+        Response response = new AuthService(urls).getToken("missingHeader");
         assertEquals(HttpStatus.SC_BAD_REQUEST, response.getStatusCode(), "Http status");
         JsonPath json = response.jsonPath();
         assertEquals("Error", json.getString("status"), "Message type");
@@ -36,7 +37,7 @@ class AuthServiceTest {
     @Test
     void invalidCredentialsWillReturnError() {
         System.out.println("1.2) Requests with invalid user credentials will be given an appropriate error response");
-        Response response = new AuthService().getToken("invalidClientId", "invalidClientPassword");
+        Response response = new AuthService(urls).getToken("invalidClientId", "invalidClientPassword");
         assertEquals(HttpStatus.SC_FORBIDDEN, response.getStatusCode(), "Http status");
         JsonPath json = response.jsonPath();
         assertEquals("Error", json.getString("status"), "Message type");

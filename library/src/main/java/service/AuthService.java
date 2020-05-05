@@ -3,22 +3,24 @@ package service;
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
-import utility.EnvironmentConstants;
 
 import java.util.Map;
 
 public class AuthService {
     private static final String CLIENT_PASSWORD_HEADER = "x-client-password";
     private static final String CLIENT_ID_HEADER = "x-client-id";
-    private final String authEndPoint = EnvironmentConstants.AUTH_SERVICE;
-    private final String service = EnvironmentConstants.HOST;
+    private final String AUTH_SERVICE;
     private final RequestSpecification request = RestAssured.with().log().uri().accept("application/json");
+
+    public AuthService(ApiUrls urls) {
+        AUTH_SERVICE = urls.get(ServiceName.HOST) + urls.get(ServiceName.AUTH);
+    }
 
     /*Get the token using the default login details*/
     public String getToken() {
         return request
                 .headers(Map.of(CLIENT_ID_HEADER, "fakeId", CLIENT_PASSWORD_HEADER, "fakePassword"))
-                .get(service + authEndPoint)
+                .get(AUTH_SERVICE)
                 .jsonPath()
                 .getString("token");
     }
@@ -27,14 +29,14 @@ public class AuthService {
     public Response getToken(String clientId, String clientPassword) {
         return request
                 .headers(Map.of(CLIENT_ID_HEADER, clientId, CLIENT_PASSWORD_HEADER, clientPassword))
-                .get(service + authEndPoint);
+                .get(AUTH_SERVICE);
     }
 
     /*Token request with a missing header, e.g. client password*/
     public Response getToken(String headerValue) {
         return request
                 .headers(Map.of(CLIENT_ID_HEADER, headerValue))
-                .get(service + authEndPoint);
+                .get(AUTH_SERVICE);
     }
 
     public Map<String, String> getTokenHeader() {

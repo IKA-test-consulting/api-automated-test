@@ -7,6 +7,8 @@ version '0.01'
 
 ext {
     junitVersion = '5.5.1'
+    restassuredVersion = '4.0.0'
+    gsonVersion = '2.8.5'
     hoverflyVersion = '0.12.3'
     httpComponentsVersion = '4.4.13'
 }
@@ -23,6 +25,12 @@ dependencies {
     // API mocking
     compile "io.specto:hoverfly-java:$hoverflyVersion"
     compile "io.specto:hoverfly-java-junit5:$hoverflyVersion"
+
+    // rest-assured
+    compile "io.rest-assured:rest-assured:$restassuredVersion"
+
+    //Json handling
+    compile "com.google.code.gson:gson:$gsonVersion"
 
     //HTTP status codes
     implementation("org.apache.httpcomponents:httpcore:$httpComponentsVersion")

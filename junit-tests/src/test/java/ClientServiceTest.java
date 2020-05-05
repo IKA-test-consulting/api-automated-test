@@ -23,7 +23,7 @@ class ClientServiceTest {
     void requestWithNoTokenWillError() {
         System.out.println("5.2) A request with no token will be given an appropriate error response");
 
-        Response response = new ClientService().ping();
+        Response response = new ClientService(urls).ping();
         assertEquals(HttpStatus.SC_FORBIDDEN, response.getStatusCode(), "Http status");
         JsonPath json = response.jsonPath();
         assertEquals("error", json.getString("status"), "Message status");
@@ -35,7 +35,7 @@ class ClientServiceTest {
         System.out.println("5.1) All requests to services must use a token retrieved from the Auth service");
         System.out.println("5.3) All services will provide their 'UP' status");
 
-        Response response = new ClientService().ping(new AuthService().getToken());
+        Response response = new ClientService(urls).ping(new AuthService(urls).getToken());
         assertEquals(HttpStatus.SC_OK, response.getStatusCode(), "Http status");
         JsonPath json = response.jsonPath();
         assertEquals("client", json.getString("service"), "Service");
@@ -53,7 +53,7 @@ class ClientServiceTest {
                 .client(new Client().withMandatory("John", "Doe"))
                 .preferences(new Preferences());
 
-        Response response = new ClientService().createClient(clientRequest);
+        Response response = new ClientService(urls).createClient(clientRequest);
         assertEquals(HttpStatus.SC_OK, response.getStatusCode(), "Http status");
         JsonPath json = response.jsonPath();
         assertEquals("success", json.getString("status"), "status");
@@ -72,7 +72,7 @@ class ClientServiceTest {
                 .client(new Client().EmailAddress("missingMandatory@test.test"))
                 .preferences(new Preferences());
 
-        Response response = new ClientService().createClient(clientRequest);
+        Response response = new ClientService(urls).createClient(clientRequest);
 
         assertEquals(HttpStatus.SC_BAD_REQUEST, response.getStatusCode(), "Http status");
         JsonPath json = response.jsonPath();
@@ -91,7 +91,7 @@ class ClientServiceTest {
                 .client(new Client().withMandatory("James", "Doe").withIdMandatory())
                 .preferences(new Preferences());
 
-        Response response = new ClientService().createClient(clientRequest);
+        Response response = new ClientService(urls).createClient(clientRequest);
         assertEquals(HttpStatus.SC_OK, response.getStatusCode(), "Http status");
         JsonPath json = response.jsonPath();
         assertEquals("success", json.getString("status"), "status");
@@ -110,7 +110,7 @@ class ClientServiceTest {
                 .client(new Client().withMandatory("Jack", "Doe").EmailAddress("missingMandatory@test.test"))
                 .preferences(new Preferences());
 
-        Response response = new ClientService().createClient(clientRequest);
+        Response response = new ClientService(urls).createClient(clientRequest);
 
         assertEquals(HttpStatus.SC_BAD_REQUEST, response.getStatusCode(), "Http status");
         JsonPath json = response.jsonPath();
@@ -128,7 +128,7 @@ class ClientServiceTest {
                 .client(new Client().withMandatory("Jack", "Doe").EmailAddress("missingMandatory@test.test"))
                 .preferences(new Preferences());
 
-        Response response = new ClientService().updateClient(clientRequest);
+        Response response = new ClientService(urls).updateClient(clientRequest);
 
         assertEquals(HttpStatus.SC_OK, response.getStatusCode(), "Http status");
         JsonPath json = response.jsonPath();
