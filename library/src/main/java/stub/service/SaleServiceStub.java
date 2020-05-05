@@ -6,13 +6,17 @@ import org.apache.http.HttpStatus;
 import stub.builder.StubMethod;
 import stub.builder.StubRequest;
 import stub.builder.StubResponse;
-import utility.EnvironmentConstants;
 
 public class SaleServiceStub {
-    private static final String HOST = EnvironmentConstants.HOST;
-    private static final String SALE_SERVICE = EnvironmentConstants.SALE_SERVICE;
+    private final String HOST;
+    private final String SALE_SERVICE;
 
     private static final String HEADER_AUTH = "Authorization";
+
+    public SaleServiceStub(String host, String service) {
+        HOST = host;
+        SALE_SERVICE = service;
+    }
 
     private Response createResponse(int httpStatus, String body) {
         return new StubResponse().status(httpStatus).body(body).build();

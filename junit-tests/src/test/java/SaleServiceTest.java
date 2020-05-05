@@ -8,19 +8,20 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import service.AuthService;
 import service.SaleService;
-import stub.StubHandler;
+import stub.StubServiceHandler;
 
 import java.util.Collections;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static utility.EnvironmentConstants.*;
 
 class SaleServiceTest {
 
     @BeforeAll
     static void setup() {
-        new StubHandler().withAuthStub().withSaleStub().start();
+        new StubServiceHandler(HOST).withAuthStub(AUTH_SERVICE).withSaleStub(SALE_SERVICE).start();
     }
 
     @Test

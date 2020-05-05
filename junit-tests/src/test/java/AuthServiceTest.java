@@ -1,17 +1,18 @@
 import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
-import stub.StubHandler;
 import org.apache.http.HttpStatus;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import service.AuthService;
+import stub.StubServiceHandler;
+import utility.*;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class AuthServiceTest {
     @BeforeAll
     static void setup() {
-        new StubHandler().withAuthStub().start();
+        new StubServiceHandler(EnvironmentConstants.HOST).withAuthStub(EnvironmentConstants.AUTH_SERVICE).start();
     }
 
     @Test

@@ -12,17 +12,19 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
-public class StubHandler {
-    private static final AuthServiceStub authServiceStub = new AuthServiceStub();
+public class StubServiceHandler {
     private static final Hoverfly hoverfly = new Hoverfly(HoverflyMode.SIMULATE);
     private static final Set<RequestResponsePair> requestResponsePairs = new HashSet<>();
+    private final String HOST;
 
-    public StubHandler() {
+    public StubServiceHandler(String host) {
+        HOST = host;
         hoverfly.start();
-        requestResponsePairs.add(authServiceStub.getTokenSuccess());
     }
 
-    public StubHandler withAuthStub() {
+    public StubServiceHandler withAuthStub(String service) {
+        AuthServiceStub authServiceStub = new AuthServiceStub(HOST, service);
+        requestResponsePairs.add(authServiceStub.getTokenSuccess());
         requestResponsePairs.add(authServiceStub.getTokenInvalidCredentials());
         requestResponsePairs.add(authServiceStub.getTokenMissingCredentials());
         return this;
@@ -31,10 +33,11 @@ public class StubHandler {
     public void start() {
         HoverflyData simulationData = new HoverflyData(requestResponsePairs, new GlobalActions(new ArrayList<>()));
         hoverfly.simulate(SimulationSource.simulation(new Simulation(simulationData, new HoverflyMetaData())));
+        System.out.println("Simulation: " + hoverfly.toString());
     }
 
-    public StubHandler withClientStub() {
-        ClientServiceStub clientServiceStub = new ClientServiceStub();
+    public StubServiceHandler withClientStub(String service) {
+        ClientServiceStub clientServiceStub = new ClientServiceStub(HOST, service);
         requestResponsePairs.add(clientServiceStub.getPingError());
         requestResponsePairs.add(clientServiceStub.getPing());
         requestResponsePairs.add(clientServiceStub.createMarketXClientMandatoryError());
@@ -45,8 +48,8 @@ public class StubHandler {
         return this;
     }
 
-    public StubHandler withSaleStub() {
-        SaleServiceStub saleServiceStub = new SaleServiceStub();
+    public StubServiceHandler withSaleStub(String service) {
+        SaleServiceStub saleServiceStub = new SaleServiceStub(HOST, service);
         requestResponsePairs.add(saleServiceStub.getPingError());
         requestResponsePairs.add(saleServiceStub.getPing());
         requestResponsePairs.add(saleServiceStub.createSaleSuccess());

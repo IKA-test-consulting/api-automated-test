@@ -7,6 +7,8 @@ version '0.01'
 
 ext {
     junitVersion = '5.5.1'
+    hoverflyVersion = '0.12.3'
+    httpComponentsVersion = '4.4.13'
 }
 test {
     useJUnitPlatform()
@@ -17,4 +19,12 @@ dependencies {
     testImplementation "org.junit.jupiter:junit-jupiter-api:$junitVersion"
     testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:$junitVersion"
     testCompile "org.junit.vintage:junit-vintage-engine:$junitVersion"
+
+    // API mocking
+    compile "io.specto:hoverfly-java:$hoverflyVersion"
+    compile "io.specto:hoverfly-java-junit5:$hoverflyVersion"
+
+    //HTTP status codes
+    implementation("org.apache.httpcomponents:httpcore:$httpComponentsVersion")
+
 }

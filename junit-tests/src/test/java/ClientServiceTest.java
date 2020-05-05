@@ -8,14 +8,15 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import service.AuthService;
 import service.ClientService;
-import stub.StubHandler;
+import stub.StubServiceHandler;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static utility.EnvironmentConstants.*;
 
 class ClientServiceTest {
     @BeforeAll
     static void setup() {
-        new StubHandler().withAuthStub().withClientStub().start();
+        new StubServiceHandler(HOST).withAuthStub(AUTH_SERVICE).withClientStub(CLIENT_SERVICE).start();
     }
 
     @Test

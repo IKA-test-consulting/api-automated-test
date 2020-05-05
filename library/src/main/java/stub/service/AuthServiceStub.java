@@ -7,7 +7,6 @@ import io.specto.hoverfly.junit.core.model.Response;
 import org.apache.http.HttpStatus;
 import stub.builder.StubRequest;
 import stub.builder.StubResponse;
-import utility.EnvironmentConstants;
 
 import java.util.Collections;
 import java.util.HashMap;
@@ -17,11 +16,16 @@ import java.util.Map;
 import static stub.builder.StubMethod.GET;
 
 public class AuthServiceStub {
-    private static final String HOST = EnvironmentConstants.HOST;
-    private static final String AUTH_SERVICE = EnvironmentConstants.AUTH_SERVICE;
+    private final String HOST;
+    private final String AUTH_SERVICE;
 
     private static final String HEADER_CLIENT_ID = "x-client-id";
     private static final String HEADER_CLIENT_PASSWORD = "x-client-password";
+
+    public AuthServiceStub(String host, String service) {
+        HOST = host;
+        AUTH_SERVICE = service;
+    }
 
     private Response createResponse(int statusCode, String body) {
         return new StubResponse().status(statusCode).body(body).build();
