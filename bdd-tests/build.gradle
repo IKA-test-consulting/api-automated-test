@@ -17,7 +17,7 @@ ext {
     restassuredVersion = '4.0.0'
     hoverflyVersion = '0.12.2'
     gsonVersion = '2.8.5'
-    cucumberVersion = '4.8.0'
+    cucumberVersion = '5.7.0'
 }
 
 dependencies {
@@ -38,5 +38,5 @@ dependencies {
     testCompile "io.cucumber:cucumber-core:$cucumberVersion"
     testCompile "io.cucumber:cucumber-java:$cucumberVersion"
     testCompile "io.cucumber:cucumber-junit:$cucumberVersion"
-    testCompile "io.cucumber:cucumber-picocontainer:$cucumberVersion" //Used to share information between stepdefs
+    testCompile "io.cucumber:cucumber-picocontainer:$cucumberVersion" //Used to share information between step defs
 }

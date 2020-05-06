@@ -15,7 +15,7 @@
 1) Client mandatory fields also include identification details
  
 ## 3. Products
-Currently removed from scope
+This is currently removed from scope
 1) ~~Creating a product with mandatory data will be given a success response~~
 1) ~~Products without a market designation will be given an error response~~
 1) ~~Each product must be unique within a market~~
