@@ -1,69 +1,96 @@
 package net.ikaconsulting.steps;
 
+import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
+import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
+import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
+import model.client.Client;
+import model.sale.Product;
+import model.sale.SaleRequest;
+import org.apache.http.HttpStatus;
+import service.AuthService;
+import service.SaleService;
 import stub.StubServiceHandler;
 import utility.EnvironmentConstants;
 
+import java.util.Collections;
+import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 public class SaleServiceSteps {
     private Response response;
+    private SaleRequest salesIntent;
     private final EnvironmentConstants env = new EnvironmentConstants();
 
     public SaleServiceSteps() {
         new StubServiceHandler(env.HOST).withAuthStub(env.AUTH_SERVICE).withSaleStub(env.SALE_SERVICE).start();
     }
 
-    @Given("I am a dummy step")
-    public void iAmADummyStep() {
+
+    @Given("I have a Sales intent")
+    public void iHaveASalesIntent() {
+        salesIntent = new SaleRequest()
+                .market("MarketX")
+                .coupons(Collections.singletonList("X-123"))
+                .client(new Client().ClientId("int-1"))
+                .products(Collections.singletonList(new Product().getByName("product 1")));
+    }
+
+    @Given("I have a Sales intent with no products")
+    public void iHaveASalesIntentWithNoProducts() {
+        salesIntent = new SaleRequest()
+                .market("MarketX")
+                .coupons(Collections.singletonList("X-123"))
+                .client(new Client().ClientId("int-1"));
 
     }
 
-    /*TODO convert to steps
-    static void setup() {
-        new StubServiceHandler(HOST).withAuthStub(AUTH_SERVICE).withSaleStub(SALE_SERVICE).start();
+    @When("I ping the Sale service with no Auth token")
+    public void iPingTheSaleServiceWithNoAuthToken() {
+        response = new SaleService(env.urls()).ping();
     }
 
-    @Test
-    void requestWithNoTokenWillError() {
-        System.out.println("5.2) A request with no token will be given an appropriate error response");
+    @When("I ping the Sale service with an Auth token")
+    public void iPingTheSaleServiceWithAnAuthToken() {
+        response = new SaleService(env.urls()).ping(new AuthService(env.urls()).getToken());
+    }
 
-        Response response = new SaleService(urls).ping();
+    @Then("I will get a no token error response from the sale service")
+    public void iWillGetANoTokenErrorResponseFromTheSaleService() {
         assertEquals(HttpStatus.SC_FORBIDDEN, response.getStatusCode(), "Http status");
         JsonPath json = response.jsonPath();
         assertEquals("error", json.getString("status"), "Message status");
         assertEquals("Missing Token", json.getString("reason"), "Message reason");
     }
 
-    @Test
-    void pingRequestWithTokenWillGetServiceStatus() {
-        System.out.println("5.1) All requests to services must use a token retrieved from the Auth service");
-        System.out.println("5.3) All services will provide their 'UP' status");
-
-        Response response = new SaleService(urls).ping(new AuthService(urls).getToken());
+    @Then("I will get response with the sale service Up status")
+    public void iWillGetResponseWithTheSaleServiceUpStatus() {
         assertEquals(HttpStatus.SC_OK, response.getStatusCode(), "Http status");
         JsonPath json = response.jsonPath();
         assertEquals("client", json.getString("service"), "Service");
         assertEquals("UP", json.getString("status"), "Ping Status");
     }
 
-    @Test
-    void addSaleToClient() {
-        System.out.println("4.1.2) A client can make a purchase");
-        System.out.println("4.1.2) A purchase can contain 1 or more products within a market");
-        System.out.println("4.1.3) A successful purchase will provide a summary of the purchase cost and relevant amounts");
+    @When("I make a Sales")
+    public void iMakeASales() {
+        response = new SaleService(env.urls()).addSale(salesIntent);
+    }
 
-        SaleRequest request = new SaleRequest()
-                .market("MarketX")
-                .coupons(Collections.singletonList("X-123"))
-                .client(new Client().ClientId("int-1"))
-                .products(Collections.singletonList(new Product().getByName("product 1")));
-
-        Response response = new SaleService(urls).addSale(request);
+    @Then("I will be informed my Sales purchase is successful")
+    public void iWillBeInformedMySalesPurchaseIsSuccessful() {
         assertEquals(HttpStatus.SC_OK, response.getStatusCode(), "Http status");
         JsonPath json = response.jsonPath();
         assertEquals("success", json.getString("status"), "status");
         assertEquals("Sale successful for John Doe", json.getString("message"), "message");
-        JsonPath details = json.setRootPath("details");
+    }
+
+    @And("I will see a summary of my Sales purchase")
+    public void iWillSeeASummaryOfMySalesPurchase() {
+        JsonPath details = response.jsonPath().setRootPath("details");
         assertEquals("GBP", details.getString("currency"), "Currency");
         assertEquals(123.45, details.getDouble("totalSale"), "Total Sale");
         assertEquals(23.45, details.getDouble("totalTax"), "Total Tax");
@@ -73,5 +100,10 @@ public class SaleServiceSteps {
         assertTrue(productList.contains("Product 1") && productList.contains("Product 2") && productList.contains("Product 3"), "Product list contains expected products");
         assertEquals("Leave outside by the pool.", details.getString("additionalDetails"));
     }
-     */
+
+    @Then("I will be informed my Sales purchase is unsuccessful")
+    public void iWillBeInformedMySalesPurchaseIsUnsuccessful() {
+        //TODO create a mock for an empty products list
+        throw new io.cucumber.java.PendingException("Create a mock for an empty products list and then add verifications");
+    }
 }
